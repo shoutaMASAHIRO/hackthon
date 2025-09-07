@@ -1,0 +1,22 @@
+<div style="border:1px solid #eee; border-radius:10px; padding:10px 12px; margin:8px 0;">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <strong><%= comment.user.name.presence || comment.user.email %></strong>
+    <small style="color:#666;"><%= l comment.created_at, format: :short %></small>
+  </div>
+
+  <div style="margin-top:6px; white-space:pre-wrap;"><%= simple_format comment.body %></div>
+
+  <% if user_signed_in? && (comment.user == current_user || post.user == current_user) %>
+    <div style="margin-top:8px; display:flex; gap:10px;">
+      <!-- 編集ページへ -->
+      <%= link_to "編集", edit_post_comment_path(post, comment),
+                  style: "padding:6px 10px; border:1px solid #ddd; border-radius:6px; text-decoration:none;" %>
+
+      <!-- 削除（確認付き） -->
+      <%= button_to "削除", [post, comment], method: :delete,
+            form: { data: { turbo_confirm: "コメントを削除しますか？" } },
+            params: {},
+            style: "padding:6px 10px; border:1px solid #ddd; border-radius:6px;" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,26 @@
+<div class="post-footer">
+
+  <% if user_signed_in? %>
+    <% if post.user_id == current_user.id %>
+      <small>※ 自分の投稿にはいいねできません</small>
+    <% else %>
+      <% if current_user.likes.exists?(post: post) %>
+        <%= button_to "いいね解除",
+                      post_like_path(post),
+                      method: :delete,
+                      remote: true,
+                      class: "btn-unlike" %>
+      <% else %>
+        <%= button_to "いいねを押す",
+                      post_like_path(post),
+                      method: :post,
+                      remote: true,
+                      class: "btn-like" %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <small><%= link_to "ログイン", new_user_session_path %>で「いいね」できます</small>
+  <% end %>
+
+  
+</div>

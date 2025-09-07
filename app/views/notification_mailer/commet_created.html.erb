@@ -1,0 +1,6 @@
+<p><%= @post.user.name.presence || @post.user.email %> さん</p>
+<p>「<%= @post.title %>」に <%= @comment.user.name.presence || @comment.user.email %> さんがコメントしました。</p>
+<blockquote style="margin:6px 0; padding:6px 10px; border-left:4px solid #eee;">
+  <%= simple_format @comment.body %>
+</blockquote>
+<p><%= link_to "投稿を開く", post_url(@post) %></p>

@@ -1,0 +1,30 @@
+<%= form_with model: @post, local: true do |f| %>
+  <div style="margin-bottom:8px;">
+    <%= f.label :title, "タイトル" %><br>
+    <%= f.text_field :title, style: "width:100%; padding:8px;" %>
+  </div>
+
+  <div style="margin-bottom:8px;">
+    <%= f.label :body, "本文" %><br>
+    <%= f.text_area :body, rows: 6, style: "width:100%; padding:8px;" %>
+  </div>
+
+  <div style="margin-top:8px;">
+    <%= f.label :image, "画像" %><br>
+    <%= f.file_field :image, accept: "image/*" %>
+  </div>
+
+  <% if f.object.image.attached? %>
+    <div style="margin-top:8px;">
+      <p>現在の画像</p>
+      <%= image_tag f.object.image.variant(resize_to_limit: [300, 300]) %><br>
+      <label style="display:inline-flex; gap:6px; align-items:center; margin-top:6px;">
+        <%= check_box_tag :remove_image, "1", false %> 画像を削除する
+      </label>
+    </div>
+  <% end %>
+
+  <div style="margin-top:12px;">
+    <%= f.submit "保存", style: "padding:8px 14px; border:1px solid #ddd; border-radius:6px; cursor:pointer;" %>
+  </div>
+<% end %>

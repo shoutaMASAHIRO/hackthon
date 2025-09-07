@@ -1,0 +1,54 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+/* ▼ ページネーションのデザイン ▼ */
+.pagination-wrapper {
+    position: fixed;
+    bottom: 0;                  /* 画面下に固定 */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;    /* 中央寄せ */
+    padding: 0.4rem 0;
+    background: #111;           /* 黒基調の背景 */
+    border-top: 1px solid #333; /* 上の区切り線も黒っぽく */
+    z-index: 1000;
+  }
+  
+  /* 本文がページネーションに隠れないように余白を追加 */
+  body {
+    padding-bottom: 2.5rem;       /* ページネーションの高さ分 */
+  }
+  
+  .pagination-wrapper .pagination {
+    display: flex;
+    gap: 0.6rem;
+    margin: 0;                  /* 余計なマージンを除去 */
+    padding: 0;
+  }
+  
+  .pagination-wrapper .pagination a,
+  .pagination-wrapper .pagination span {
+    color: #eee;                /* 文字は薄い白 */
+    text-decoration: none;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+  
+  /* ホバー時（少し明るくする） */
+  .pagination-wrapper .pagination a:hover {
+    background: #222;            /* 背景を少し明るめの黒 */
+    color: #fff;                 /* 白を強調 */
+  }
+  
+  /* 現在のページ */
+  .pagination-wrapper .pagination .current {
+    background: #007bff;         /* アクセントカラー（青） */
+    color: #fff;
+    font-weight: bold;
+  }
+  

@@ -1,0 +1,3 @@
+// いいねエリア全体を差し替え
+document.getElementById("like-section-<%= @post.id %>").outerHTML =
+  "<%= j render('posts/like_section', post: @post) %>";
