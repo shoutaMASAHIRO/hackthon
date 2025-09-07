@@ -1,0 +1,16 @@
+<p>
+  <strong><%= @follower.name.presence || @follower.email %></strong>
+  さんが
+  <strong><%= @followed.name.presence || @followed.email %></strong>
+  さんをフォローしました。
+</p>
+
+<p>
+  フォロワー（フォローした人）のプロフィールを見る：<br>
+  <%= link_to user_url(@follower), user_url(@follower) %>
+</p>
+
+<p>
+  フォローされた人のプロフィールを見る：<br>
+  <%= link_to user_url(@followed), user_url(@followed) %>
+</p>

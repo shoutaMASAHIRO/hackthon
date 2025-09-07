@@ -1,0 +1,8 @@
+<%= @follower.name.presence || @follower.email %> さんが
+<%= @followed.name.presence || @followed.email %> さんをフォローしました。
+
+フォロワー（フォローした人）のプロフィール:
+<%= user_url(@follower) %>
+
+フォローされた人のプロフィール:
+<%= user_url(@followed) %>

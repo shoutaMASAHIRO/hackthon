@@ -6,7 +6,17 @@ Rails.application.routes.draw do
   root "posts#index"
 
   # ✅ ユーザー一覧&詳細
-  resources :users, only: [:index, :show]
+ # config/routes.rb
+  resources :users, only: [:index, :show] do
+    member do
+      get :following, :followers
+    end
+  end
+
+  #resources :follows, only: [:create, :destroy]
+  resource  :follow,  only: [:create, :destroy]
+
+
 
   resources :posts do
     resources :comments, only: [:create, :destroy, :edit, :update]

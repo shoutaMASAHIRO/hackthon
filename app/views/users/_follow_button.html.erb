@@ -1,0 +1,27 @@
+<!-- app/views/users/_follow_button.html.erb -->
+<%# 一覧で文言を短くしたい時は render 側で compact: true を渡す %>
+<% compact = local_assigns.fetch(:compact, false) %>
+
+<% if defined?(user_signed_in?) && user_signed_in? %>
+  <% unless current_user == user %>
+    <% if current_user.following?(user) %>
+      <%= button_to (compact ? "フォロー中" : "フォロー中（解除）"),
+          follow_path(user_id: user.id),
+          method: :delete,
+          class: "btn btn-outline-secondary follow-btn",
+          form:  { data: { turbo: false, turbo_confirm: "フォローを解除しますか？" } },
+          aria:  { label: "#{user.name.presence || user.email} のフォローを解除" } %>
+    <% else %>
+      <%= button_to "フォローする",
+          follow_path(user_id: user.id),
+          method: :post,
+          class: "btn btn-primary follow-btn",
+          form:  { data: { turbo: false } },
+          aria:  { label: "#{user.name.presence || user.email} をフォロー" } %>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= link_to "ログインしてフォロー",
+      (main_app.respond_to?(:new_user_session_path) ? main_app.new_user_session_path : "#"),
+      class: "btn btn-outline-secondary follow-btn" %>
+<% end %>
